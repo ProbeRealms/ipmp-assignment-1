@@ -17,9 +17,6 @@ const PORT = process.env.PORT || 3500;
 // Connect to mongoDB
 connectDB();
 
-// custom middleware logger
-app.use(logger);
-
 app.use(credentials);
 
 // Cross Origin resource share.
@@ -44,17 +41,9 @@ app.use('/auth', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
 app.use('/logout', require('./routes/logout'));
 
-// // Add this simple test route
-// app.get('/api/test', (req, res) => {
-//     res.json({ message: "Connection successful! Backend is talking to Frontend." });
-// });
-
-// mongodb+srv://muhammadalee2006_db_user:<db_password>@cluster0.bemhqo6.mongodb.net/?appName=Cluster0
-
 
 app.use(verifyJWT);
 app.use('/tasks', require('./routes/api/tasks'));
-app.use('/employees', require('./routes/api/employees'));
 
 
 app.all(/.*/, (req, res) => {
